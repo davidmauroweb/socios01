@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{FacturaController, HomeController, ParteController, ProoController};
 
 Route::get('/', function () {
-    return redirect('home');
+    return redirect()->route('fac.index');
 });
 
 Auth::routes();

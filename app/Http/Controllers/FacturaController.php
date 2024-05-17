@@ -22,13 +22,22 @@ class FacturaController extends Controller
         $propias = DB::table('facturas')
             ->join('proos','proos.id','=','facturas.pro_id')
             ->join('partes','facturas.id','=','partes.fac_id')
-            ->select('proos.nombre_p','facturas.id as fid','facturas.num_f','facturas.monto', DB::raw('sum(partes.parte) as total'))
+            ->select('proos.nombre_p','facturas.id as fid','facturas.num_f','facturas.monto','facturas.created_at', DB::raw('sum(partes.parte) as total'))
             ->where('facturas.us_id','=',$us)
             ->where('partes.estado','=','0')
             ->groupBy('partes.fac_id')
             ->orderBy('facturas.id', 'desc')
             ->get();
-            return view ('facturas', ['propias' => $propias, 'pro'=>$pro]);
+        $pen = DB::table('partes')
+            ->join('facturas','facturas.id','=','partes.fac_id')
+            ->join('proos','proos.id','=','facturas.pro_id')
+            ->join('users','facturas.us_id','users.id')
+            ->select('users.name','proos.nombre_p','partes.parte','facturas.num_f','facturas.created_at')
+            ->where('partes.us_id','=',$us)
+            ->where('partes.estado','=',0)
+            ->orderBy('partes.created_at')
+            ->get();
+        return view ('facturas', ['propias' => $propias, 'pro'=>$pro, 'pen'=>$pen]);
     }
 
     /**
