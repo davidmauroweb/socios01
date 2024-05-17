@@ -12,9 +12,17 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Iconos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Sweet Alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="../style.css">
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 <body>
     <div id="app">
@@ -23,6 +31,15 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                @guest
+                @else
+                <a class="navbar-brand" href="{{ route('pro.index') }}">
+                <button type="button" class="btn btn-sm btn-outline-primary">Proveedores</button>
+                </a>
+                <a class="navbar-brand" href="{{ route('fac.index') }}">
+                <button type="button" class="btn btn-sm btn-outline-primary">Facturas</button>
+                </a>
+                @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -71,6 +88,40 @@
                 </div>
             </div>
         </nav>
+
+@if (session('mensajeOk'))
+<script>
+    Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "{{session('mensajeOk')}}",
+  showConfirmButton: false,
+  timer: 4500
+});
+</script>
+@endif
+@if (session('mensajeNo'))
+<script>
+    Swal.fire({
+  position: "top-end",
+  icon: "error",
+  title: "{{session('mensajeNo')}}",
+  showConfirmButton: false,
+  timer: 4500
+});
+</script>
+@endif
+
+@if (session('messages'))
+<script>
+    Swal.fire({
+  position: "top-end",
+  icon: "info",
+  title: "{{session('messages')}}",
+  showConfirmButton: false,
+  timer: 4500
+});
+@endif
 
         <main class="py-4">
             @yield('content')

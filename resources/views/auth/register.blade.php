@@ -26,6 +26,19 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="porcion" class="col-md-4 col-form-label text-md-end">{{ __('Porción') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="porcion" id="porcion"  class="form-control">
+                                    <option value="1">1 Unica parte</option>
+                                    <option value="1.5">1,5 Su parte y media</option>
+                                    <option value="1.333333">1,33 Su parte y tercio</option>
+                                    <option value="1.25">1,25 Su parte y cuarto</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
