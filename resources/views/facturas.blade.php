@@ -13,7 +13,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
                     <table class="table table-striped">
                         <thead><th>#</th><th><i class="bi bi-card-checklist"></i></th><th>Proveedor</th><th>N.Factura</th><th>Monto</th><th>Cancelado</th><th>%</th></thead>
                         <tbody>

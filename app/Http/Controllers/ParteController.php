@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\parte;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ParteController extends Controller
 {
@@ -50,9 +51,10 @@ class ParteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, parte $parte)
+    public function update(Request $request)
     {
-        //
+        DB::table('partes')->where('id',$request->part_id)->where('us_id',$request->us_id)->where('fac_id',$request->fac_id)->update(['estado' => $request->estado, 'updated_at' => now()]);
+        return redirect()->route('fac.show',$request->fac_id);
     }
 
     /**

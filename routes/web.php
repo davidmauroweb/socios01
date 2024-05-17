@@ -18,3 +18,5 @@ Route::delete('/pro/{p}', [ProoController::class, 'destroy'])->name('pro.destroy
 Route::get('/fac', [FacturaController::class, 'index'])->name('fac.index');
 Route::get('/fac/{f}', [FacturaController::class, 'show'])->name('fac.show');
 Route::post('/fac', [FacturaController::class, 'store'])->name('fac.store');
+#Parte
+Route::post('/part', [ParteController::class, 'update'])->name('part.update');

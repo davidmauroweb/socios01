@@ -78,9 +78,10 @@ class FacturaController extends Controller
     {
         $fac=factura::find($f->id);
         $us=user::find($f->us_id);
+        $can=DB::table('partes')->select(DB::raw('sum(parte) as total'))->where('fac_id','=',$f->id)->where('estado','=',1)->first();
         $pro=proo::find($f->pro_id);
-        $par=DB::table('partes')->select('partes.estado','partes.parte','users.name','partes.created_at','partes.updated_at')->where('partes.fac_id','=',$f->id)->join('users','users.id','partes.us_id')->orderBy('partes.estado')->get();
-        return view ('detfac', ['fac' => $fac, 'pro' => $pro, 'us' => $us, 'par' => $par]);
+        $par=DB::table('partes')->select('partes.id','partes.us_id','partes.fac_id','partes.estado','partes.parte','users.name','partes.created_at','partes.updated_at')->where('partes.fac_id','=',$f->id)->join('users','users.id','partes.us_id')->orderBy('partes.estado')->get();
+        return view ('detfac', ['fac' => $fac, 'pro' => $pro, 'us' => $us, 'par' => $par, 'can'=> $can]);
     }
 
     /**
