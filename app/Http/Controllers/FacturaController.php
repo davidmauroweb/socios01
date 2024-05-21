@@ -85,6 +85,10 @@ class FacturaController extends Controller
      */
     public function show(factura $f)
     {
+        $sesion=Auth::user()->id;
+        if ($f->us_id != $sesion){
+            return redirect()->route('fac.index')->with('mensajeNo',' La factura no corresponde a su sesión.');
+        }
         $fac=factura::find($f->id);
         $us=user::find($f->us_id);
         $can=DB::table('partes')->select(DB::raw('sum(parte) as total'))->where('fac_id','=',$f->id)->where('estado','=',1)->first();

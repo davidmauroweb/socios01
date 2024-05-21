@@ -31,15 +31,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                @guest
-                @else
-                <a class="navbar-brand" href="{{ route('pro.index') }}">
-                <button type="button" class="btn btn-sm btn-outline-primary">Proveedores</button>
-                </a>
-                <a class="navbar-brand" href="{{ route('fac.index') }}">
-                <button type="button" class="btn btn-sm btn-outline-primary">Facturas</button>
-                </a>
-                @endguest
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -47,7 +39,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                    @guest
+                @else
+                <a class="navbar-brand" href="{{ route('pro.index') }}">
+                <button type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-people"></i> Proveedores</button>
+                </a>
+                <a class="navbar-brand" href="{{ route('fac.index') }}">
+                <button type="button" class="btn btn-sm btn-outline-primary"><i class="bi bi-file-ruled"></i> Facturas</button>
+                </a>
+                @endguest
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -56,13 +56,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Ingreso') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Nuevo Socio') }}</a>
                                 </li>
                             @endif
                         @else
@@ -75,7 +75,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="bi bi-person-fill-lock"></i> {{ __('Cerrar Sesión') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

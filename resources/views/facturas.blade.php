@@ -4,23 +4,23 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="card my-2">
-            <div class="card-header">{{ __('Lista de partes pendientes') }}</div>
+            <div class="card my-2 border-warning">
+            <div class="card-header bg-warning"><i class="bi bi-file-ruled"></i> {{ __('Lista de partes pendientes') }}</div>
             <div class="card-body">
             <table class="table table-striped">
             <thead>
-            <th>Fecha</th><th>Cargada</th><th>Proveedor</th><th>Numero</th><th>Monto</th>
+            <td><b>Fecha</b></td><td><b>Cargada</b></td><td><b>Proveedor</b></td><td><b>N.Factura</b></td><td align="right"><b>Monto</b></td>
             </thead>
             @php 
             $x=0
             @endphp
             @foreach ($pen as $p)
-            <tr class="table-danger">
+            <tr class="table-warning">
                 <td>{{ date('d/m/Y', strtotime($p->created_at)) }}</td>
                 <td>{{$p->name}}</td>
                 <td>{{$p->nombre_p}}</td>
                 <td>{{$p->num_f}}</td>
-                <td>{{number_format($p->parte,2,',','.')}}</td>
+                <td align="right">{{number_format($p->parte,2,',','.')}}</td>
             </tr>
             @php
             $x+=$p->parte
@@ -33,8 +33,8 @@
             </div>
 
             </div>
-            <div class="card">
-                <div class="card-header">{{ __('Lista de facturas propias') }}</div>
+            <div class="card border-primary">
+                <div class="card-header bg-primary text-white"><i class="bi bi-file-ruled"></i>{{ __('Lista de facturas propias') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -55,7 +55,7 @@
                             <td>{{$f->nombre_p}}</td>
                             <td>{{ date('d/m/Y', strtotime($f->created_at)) }}</td>
                             <td>{{$f->num_f}}</td>
-                            <td>{{$f->monto}}</td>
+                            <td>{{number_format($f->monto,2,',','.')}}</td>
                             <td>{{number_format($f->monto - $f->total,2,',','.')}}</td>
                             <td>{{number_format(($f->monto - $f->total)*100/$f->monto,2,',','.')}}</td>
                         </tr>
@@ -77,7 +77,7 @@
                             <div class="modal-body">
                                     <div>
                                         Proveedor
-                                        <select name="pro_id" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                        <select name="pro_id" class="form-select form-select-sm" aria-label=".form-select-sm example" required>
                                         <option selected></option>
                                         @foreach ($pro as $p)
                                         <option value="{{$p->id}}">{{$p->nombre_p}}</option>
@@ -86,15 +86,15 @@
                                     </div>
                                     <div>
                                         Número
-                                        <input type="text" name="num_f" class="form-control form-control-sm" value="" maxlength="20">
+                                        <input type="text" name="num_f" class="form-control form-control-sm" value="" maxlength="20" required>
                                     </div>
                                     <div>
                                         Monto
-                                        <input type="text" name="monto" class="form-control form-control-sm" value="" maxlength="20">
+                                        <input type="number" name="monto" class="form-control form-control-sm" value="" maxlength="20" required>
                                     </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                                <button type="submit" class="btn btn-success btn-sm">Cargar</button>
                                 </div>
                             </form>
                         </div>

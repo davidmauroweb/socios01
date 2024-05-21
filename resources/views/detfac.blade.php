@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Estado de la factura ')}}{{$fac->id}} </div>
+                <div class="card-header"><i class="bi bi-file-ruled"></i> {{ __('Detalle y estado de la factura')}}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,6 +13,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <b><i class="bi bi-card-checklist"> Detalle</i></b>
                     <table class="table table-striped">
                         <thead>
                         <th>Cargada por</th>
@@ -35,13 +36,13 @@
                             </tr>                        
                         </tbody>
                     </table>
-Estado
+                    <b><i class="bi bi-toggles2"> Estado</i></b>
                     <table class="table table-striped">
                         <thead>
                             <th>Socio</th>
                             <th>Parte</th>
                             <th>Creado</th>
-                            <th>Redistro</th>
+                            <th>Movimiento</th>
                             <th>Estado</th>
                             <th><i class="bi bi-shuffle"></i></th>
                         </thead>

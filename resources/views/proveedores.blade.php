@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Lista de Proveedores') }}</div>
+                <div class="card-header bg-secondary text-white"><i class="bi bi-people"></i> {{ __('Lista de Proveedores') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -15,7 +15,7 @@
                     @endif
 
                     <table class="table table-striped">
-                        <thead><th>#</th><th><i class="bi bi-pencil-square"></i></th><th>Nombre</th><th>Domicilio</th><th>Tel.</th><th>CUIT</th></thead>
+                        <thead><th>#</th><th></th><th>Nombre</th><th>Domicilio</th><th>Tel.</th><th>CUIT</th></thead>
                         <tbody>
                         @foreach ($lista as $p)
                             <tr>
@@ -23,7 +23,7 @@
 
                                 <td>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#m{{$p->id}}" title="Editar Proveedor"><i class="bi bi-pencil-square"></i></button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#m{{$p->id}}" title="Editar Proveedor"><i class="bi bi-pencil-square"></i></button>
                                 <!-- Modal -->
                                 <div class="modal fade" id="m{{$p->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -86,19 +86,19 @@
                             <div class="modal-body">
                                     <div>
                                         Nombre
-                                        <input type="text" name="nombre_p" class="form-control form-control-sm" value="" placeholder="Nombre" maxlength="50">
+                                        <input type="text" name="nombre_p" class="form-control form-control-sm" value="" placeholder="Nombre" maxlength="50" required>
                                     </div>
                                     <div>
                                         Dirección
-                                        <input type="text" name="dir_p" class="form-control form-control-sm" value="" maxlength="50">
+                                        <input type="text" name="dir_p" class="form-control form-control-sm" value="" maxlength="50" required>
                                     </div>
                                     <div>
                                         Teléfono
-                                        <input type="text" name="tel_p" class="form-control form-control-sm" value="" maxlength="20">
+                                        <input type="text" name="tel_p" class="form-control form-control-sm" value="" maxlength="20" required>
                                     </div>
                                     <div>
                                         CUIT
-                                        <input type="text" name="cuit_p" class="form-control form-control-sm" value="" placeholder="XX-XXXXXXXX-X" maxlength="13">
+                                        <input type="text" name="cuit_p" class="form-control form-control-sm" value="" placeholder="XX-XXXXXXXX-X" maxlength="13" required>
                                     </div>
                                 <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
