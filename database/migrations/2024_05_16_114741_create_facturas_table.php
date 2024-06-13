@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('us_id');
             $table->foreign('pro_id')->references('id')->on('proos');
             $table->foreign('us_id')->references('id')->on('users');
+            $table->index(['pro_id', 'us_id']);
             $table->timestamps();
         });
     }

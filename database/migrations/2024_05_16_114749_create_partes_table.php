@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('fac_id');
             $table->foreign('fac_id')->references('id')->on('facturas');
             $table->foreign('us_id')->references('id')->on('users');
+            $table->index(['us_id', 'fac_id']);
             $table->timestamps();
         });
     }
